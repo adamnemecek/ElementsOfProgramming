@@ -9,42 +9,23 @@ import EOP
 // Exercise 4.2: Give an example of a symmetric relation that is not transitive
 // Exercise 4.3: Give an example of a symmetric relation that is not reflexive
 
-func complement<DomainR: Regular>(
-    r: @escaping Relation<DomainR>
-) -> Relation<DomainR> {
-    return { x, y in
-        return !r(x, y)
-    }
+func complement<DomainR: Regular>(r: @escaping Relation<DomainR>) -> Relation<DomainR> {
+    return { x, y in !r(x, y) }
 }
 
-func converse<DomainR: Regular>(
-    r: @escaping Relation<DomainR>
-) -> Relation<DomainR> {
-    return { x, y in
-        return r(y, x)
-    }
+func converse<DomainR: Regular>(r: @escaping Relation<DomainR>) -> Relation<DomainR> {
+    return { x, y in r(y, x) }
 }
 
-public func complementOfConverse<DomainR: Regular>(
-    r: @escaping Relation<DomainR>
-) -> Relation<DomainR> {
-    return { a, b in
-        return !r(b, a)
-    }
+public func complementOfConverse<DomainR: Regular>(r: @escaping Relation<DomainR>) -> Relation<DomainR> {
+    return { a, b in !r(b, a) }
 }
 
-func symmetricComplement<DomainR: Regular>(
-    r: @escaping Relation<DomainR>
-) -> Relation<DomainR> {
-    return { a, b in
-        return !r(a,b) && !r(b, a)
-    }
+func symmetricComplement<DomainR: Regular>(r: @escaping Relation<DomainR>) -> Relation<DomainR> {
+    return { a, b in !r(a,b) && !r(b, a) }
 }
 
-func select_0_2<DomainR: Regular>(
-    a: DomainR, b: DomainR,
-    r: Relation<DomainR>
-) -> DomainR {
+func select_0_2<DomainR: Regular>(a: DomainR, b: DomainR, r: Relation<DomainR>) -> DomainR {
     // Precondition: weak_ordering(r)
     guard r(b, a) else { return a }
     return b

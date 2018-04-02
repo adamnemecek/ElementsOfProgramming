@@ -7,7 +7,7 @@ import EOP
 
 func weightRecursive<C: BifurcateCoordinate>(c: C) -> WeightType {
     // Precondition: tree(c)
-    guard !c.isEmpty() else { return 0 }
+    guard !c.isEmpty else { return 0 }
     var l = N(0), r = N(0)
     if let ls = c.leftSuccessor {
         l = weightRecursive(c: ls)
@@ -21,7 +21,7 @@ func weightRecursive<C: BifurcateCoordinate>(c: C) -> WeightType {
 
 func heightRecursive<C: BifurcateCoordinate>(c: C) -> WeightType {
     // Precondition: tree(c)
-    guard !c.isEmpty() else { return 0 }
+    guard !c.isEmpty else { return 0 }
     var l = N(0), r = N(0)
     if let ls = c.leftSuccessor {
         l = heightRecursive(c: ls)
@@ -113,7 +113,7 @@ func reachable<C: BidirectionalBifurcateCoordinate>(
 ) -> Bool {
     var x = x
     // Precondition: tree(x)
-    guard !x.isEmpty() else { return false }
+    guard !x.isEmpty else { return false }
     let root = x
     var v = Visit.pre
     repeat {
@@ -126,7 +126,7 @@ func reachable<C: BidirectionalBifurcateCoordinate>(
 func weight<C: BidirectionalBifurcateCoordinate>(c: C) -> WeightType? {
     var c = c
     // Precondition: tree(c)
-    guard !c.isEmpty() else { return 0 }
+    guard !c.isEmpty else { return 0 }
     let root = c
     var v = Visit.pre
     var n = N(1) // Invariant: n is count of .pre visits so far
@@ -140,7 +140,7 @@ func weight<C: BidirectionalBifurcateCoordinate>(c: C) -> WeightType? {
 func height<C: BidirectionalBifurcateCoordinate>(c: C) -> WeightType? {
     var c = c
     // Precondition: tree(c)
-    guard !c.isEmpty() else { return 0 }
+    guard !c.isEmpty else { return 0 }
     let root = c
     var v = Visit.pre
     var n = N(1) // Invariant: n is max of height of .pre visits so far
@@ -163,7 +163,7 @@ func traverse<
 where P.BinaryProcedureType1 == Visit, P.BinaryProcedureType2 == C {
     var c = c
     // Precondition: tree(c)
-    guard !c.isEmpty() else { return proc }
+    guard !c.isEmpty else { return proc }
     let root = c
     var v = Visit.pre
     proc.call(.pre, c)
@@ -207,8 +207,8 @@ func bifurcateIsomorphic<
 ) -> Bool? {
     var c0 = c0, c1 = c1
     // Precondition: tree(c0) ∧ tree(c1)
-    guard !c0.isEmpty() else { return c1.isEmpty() }
-    guard !c1.isEmpty() else { return false }
+    guard !c0.isEmpty else { return c1.isEmpty }
+    guard !c1.isEmpty else { return false }
     let root0 = c0
     var v0 = Visit.pre
     var v1 = Visit.pre
@@ -313,8 +313,8 @@ where C0.Source == C1.Source {
     var c0 = c0, c1 = c1
     // Precondition: readable_tree(c0) ∧ readable_tree(c1)
     // Precondition: equivalence(r)
-    guard !c0.isEmpty() else { return c1.isEmpty() }
-    guard !c1.isEmpty() else { return false }
+    guard !c0.isEmpty else { return c1.isEmpty }
+    guard !c1.isEmpty else { return false }
     let root0 = c0
     var v0 = Visit.pre
     var v1 = Visit.pre
@@ -505,8 +505,8 @@ func bifurcateCompare<
 where C0.Source == C1.Source {
     var c0 = c0, c1 = c1
     // Precondition: readable_tree(c0) ∧ readable_tree(c1) ∧ weak_ordering(r)
-    guard !c1.isEmpty() else { return false }
-    guard !c0.isEmpty() else { return true }
+    guard !c1.isEmpty else { return false }
+    guard !c0.isEmpty else { return true }
     let root0 = c0
     var v0 = Visit.pre
     var v1 = Visit.pre

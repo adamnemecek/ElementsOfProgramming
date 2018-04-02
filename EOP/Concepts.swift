@@ -11,8 +11,7 @@
 
 // MARK: Chapter 1
 
-public protocol Regular:
-    Comparable {} // Equatable
+public protocol Regular: Comparable {}
 
 //typealias Procedure<T> = (Any, ...Any) -> Void
 
@@ -69,43 +68,23 @@ public typealias BinaryRelation<T, U> = (T, U) -> Bool
 
 // MARK: Chapter 5
 
-public protocol AdditiveSemigroup:
-    Regular,
-    Addable {}
+public protocol AdditiveSemigroup: Regular, Addable {}
 
-public protocol MultiplicativeSemigroup:
-    Regular,
-    Multipliable {}
+public protocol MultiplicativeSemigroup: Regular, Multipliable {}
 
-public protocol AdditiveMonoid:
-    AdditiveSemigroup,
-    AdditiveIdentity {}
+public protocol AdditiveMonoid: AdditiveSemigroup, AdditiveIdentity {}
 
-public protocol MultiplicativeMonoid:
-    MultiplicativeSemigroup,
-    MultiplicativeIdentity {}
+public protocol MultiplicativeMonoid: MultiplicativeSemigroup, MultiplicativeIdentity {}
 
-public protocol Semiring:
-    AdditiveMonoid,
-    MultiplicativeMonoid {}
+public protocol Semiring: AdditiveMonoid, MultiplicativeMonoid {}
 
-public protocol AdditiveGroup:
-    AdditiveMonoid,
-    Subtractable,
-    AdditiveInverse {}
+public protocol AdditiveGroup: AdditiveMonoid, Subtractable, AdditiveInverse {}
 
-public protocol MultiplicativeGroup:
-    MultiplicativeMonoid,
-    MultiplicativeInverse,
-    Divisible {}
+public protocol MultiplicativeGroup: MultiplicativeMonoid, MultiplicativeInverse, Divisible {}
 
-public protocol CommutativeSemiring:
-    Semiring {}
-    //& Commutative
+public protocol CommutativeSemiring: Semiring {} //& Commutative
 
-public protocol Ring:
-    AdditiveGroup,
-    Semiring {}
+public protocol Ring: AdditiveGroup, Semiring {}
 
 public protocol CommutativeRing:
     AdditiveGroup,
@@ -231,7 +210,7 @@ public protocol BinaryHomogeneousProcedure {
 public typealias WeightType = UInt
 
 public protocol BifurcateCoordinate: Regular {
-    func isEmpty() -> Bool
+    var isEmpty: Bool { get }
     var leftSuccessor: Self? { get }
     var rightSuccessor: Self? { get }
 }
@@ -260,7 +239,7 @@ public protocol LinkedBifurcateCoordinate: BifurcateCoordinate {
 }
 
 public protocol EmptyLinkedBifurcateCoordinate: LinkedBifurcateCoordinate {
-    func isEmpty() -> Bool
+    var isEmpty: Bool { get }
 }
 
 // MARK: Chapter 9
@@ -284,6 +263,6 @@ public protocol Linearizable: Regular {
     var begin: LinearizableIteratorType { get }
     var end: LinearizableIteratorType { get }
     var size: Int { get }
-    func isEmpty() -> Bool
+    var isEmpty: Bool { get }
     subscript(index: Int) -> LinearizableValueType { get set }
 }

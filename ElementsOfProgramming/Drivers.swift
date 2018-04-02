@@ -12,8 +12,7 @@ func logFunc(functionName: String = #function) {
 func outputOrbitStructure<DomainFP: Distance & Regular>(
     x: DomainFP,
     f: Transformation<DomainFP>,
-    p: UnaryPredicate<DomainFP>
-) {
+    p: UnaryPredicate<DomainFP>) {
     let t = orbitStructure(start: x,
                            transformation: f,
                            definitionSpace: p)

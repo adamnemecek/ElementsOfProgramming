@@ -413,7 +413,7 @@ func treeRotate<C: EmptyLinkedBifurcateCoordinate>(
     guard let crs = curr.rightSuccessor else { throw EOPError.noRightSuccessor }
     curr.leftSuccessor = crs
     curr.rightSuccessor = prev
-    guard !tmp.isEmpty() else {
+    guard !tmp.isEmpty else {
         prev = tmp
         return
     }
@@ -430,7 +430,7 @@ func traverseRotating<
 ) -> P?
 where P.UnaryProcedureType == C {
     // Precondition: tree(c)
-    guard !c.isEmpty() else { return proc }
+    guard !c.isEmpty else { return proc }
     var curr = c, prev = c
     repeat {
         proc.call(curr)
