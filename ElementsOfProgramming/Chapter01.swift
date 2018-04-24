@@ -16,15 +16,15 @@ func plus_1(a: inout Int, b: inout Int) -> Int {
 
 class IntReference {
     var value: Int
-    
+
     init(_ value: Int) {
         self.value = value
     }
 }
 
 func plus_2(a: IntReference,
-           b: IntReference,
-           c: IntReference) {
+            b: IntReference,
+            c: IntReference) {
     c.value = a.value + b.value
 }
 
@@ -32,8 +32,8 @@ func square(n: Int) -> Int { return n * n }
 
 func square<DomainOp: Regular>(
     x: DomainOp,
-   op: BinaryOperation<DomainOp>
-) -> DomainOp {
+    op: BinaryOperation<DomainOp>
+    ) -> DomainOp {
     return op(x, x)
 }
 
@@ -55,13 +55,13 @@ public func equal<T: Regular>(x: T, y: T) -> Bool { return x == y }
 // See EOP/Types/Tuples.swift
 
 #if !XCODE
-    // MARK: Playground examples
-    
-    func playgroundPlus2() {
-        let a = IntReference(2), b = IntReference(2), c = IntReference(0)
-        print(c.value)
-        plus_2(a: a, b: b, c: c)
-        print(c.value)
-    }
+// MARK: Playground examples
+
+func playgroundPlus2() {
+    let a = IntReference(2), b = IntReference(2), c = IntReference(0)
+    print(c.value)
+    plus_2(a: a, b: b, c: c)
+    print(c.value)
+}
 //    playgroundPlus2()
 #endif

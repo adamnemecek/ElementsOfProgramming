@@ -24,11 +24,11 @@ struct BidirectionalLinker<I: BidirectionalLinkedIterator> {
     static func setForwardLink(x: inout I, y: inout I) {
         x.forwardLink = y
     }
-    
+
     static func setBackwardLink(x: inout I, y: inout I) {
         y.backwardLink = x
     }
-    
+
     static func setBidirectionalLink(x: inout I, y: inout I) {
         setForwardLink(x: &x, y: &y)
         setBackwardLink(x: &x, y: &y)
@@ -66,7 +66,7 @@ func splitLinked_s0<I: ForwardLinkedIterator>(
     t0: inout I, t1: inout I,
     h0: inout I, h1: inout I,
     p: UnaryPredicate<I>
-) -> Pair<Pair<I, I>, Pair<I, I>>? {
+    ) -> Pair<Pair<I, I>, Pair<I, I>>? {
     guard f != l else {
         return splitLinked_s4(f: &f, l: &l,
                               t0: &t0, t1: &t1,
@@ -93,7 +93,7 @@ func splitLinked_s1<I: ForwardLinkedIterator>(
     t0: inout I, t1: inout I,
     h0: inout I, h1: inout I,
     p: UnaryPredicate<I>
-) -> Pair<Pair<I, I>, Pair<I, I>>? {
+    ) -> Pair<Pair<I, I>, Pair<I, I>>? {
     guard f != l else {
         return splitLinked_s4(f: &f, l: &l,
                               t0: &t0, t1: &t1,
@@ -121,7 +121,7 @@ func splitLinked_s2<I: ForwardLinkedIterator>(
     t0: inout I, t1: inout I,
     h0: inout I, h1: inout I,
     p: UnaryPredicate<I>
-) -> Pair<Pair<I, I>, Pair<I, I>>? {
+    ) -> Pair<Pair<I, I>, Pair<I, I>>? {
     guard f != l else {
         return splitLinked_s4(f: &f, l: &l,
                               t0: &t0, t1: &t1,
@@ -147,7 +147,7 @@ func splitLinked_s3<I: ForwardLinkedIterator>(
     t0: inout I, t1: inout I,
     h0: inout I, h1: inout I,
     p: UnaryPredicate<I>
-) -> Pair<Pair<I, I>, Pair<I, I>>? {
+    ) -> Pair<Pair<I, I>, Pair<I, I>>? {
     guard f != l else {
         return splitLinked_s4(f: &f, l: &l,
                               t0: &t0, t1: &t1,
@@ -173,7 +173,7 @@ func splitLinked_s4<I: ForwardIterator>(
     t0: inout I, t1: inout I,
     h0: inout I, h1: inout I,
     p: UnaryPredicate<I>
-) -> Pair<Pair<I, I>, Pair<I, I>> {
+    ) -> Pair<Pair<I, I>, Pair<I, I>> {
     return Pair(m0: Pair(m0: h0, m1: t0),
                 m1: Pair(m0: h1, m1: t1))
 }
@@ -181,7 +181,7 @@ func splitLinked_s4<I: ForwardIterator>(
 func splitLinked<I: ForwardLinkedIterator>(
     f: I, l: I,
     p: UnaryPredicate<I>
-) -> Pair<Pair<I, I>, Pair<I, I>>? {
+    ) -> Pair<Pair<I, I>, Pair<I, I>>? {
     var f = f, l = l
     // Precondition: bounded_range(f, l)
     var h0 = l, h1 = l
@@ -217,7 +217,7 @@ func combineLinkedNonempty_s0<I: ForwardLinkedIterator>(
     f1: inout I, l1: inout I,
     h: inout I, t: inout I,
     r: Relation<I>
-) -> Triple<I, I, I>? {
+    ) -> Triple<I, I, I>? {
     guard f0 != l0 else {
         return combineLinkedNonempty_s2(f0: &f0, l0: &l0,
                                         f1: &f1, l1: &l1,
@@ -243,7 +243,7 @@ func combineLinkedNonempty_s1<I: ForwardLinkedIterator>(
     f1: inout I, l1: inout I,
     h: inout I, t: inout I,
     r: Relation<I>
-) -> Triple<I, I, I>? {
+    ) -> Triple<I, I, I>? {
     guard f1 != l1 else {
         return combineLinkedNonempty_s3(f0: &f0, l0: &l0,
                                         f1: &f1, l1: &l1,
@@ -269,7 +269,7 @@ func combineLinkedNonempty_s2<I: ForwardLinkedIterator>(
     f1: inout I, l1: inout I,
     h: inout I, t: inout I,
     r: Relation<I>
-) -> Triple<I, I, I> {
+    ) -> Triple<I, I, I> {
     ForwardLinker.setForwardLink(x: &t, y: &f1)
     return Triple(m0: h, m1: t, m2: l1)
 }
@@ -279,7 +279,7 @@ func combineLinkedNonempty_s3<I: ForwardLinkedIterator>(
     f1: inout I, l1: inout I,
     h: inout I, t: inout I,
     r: Relation<I>
-) -> Triple<I, I, I> {
+    ) -> Triple<I, I, I> {
     ForwardLinker.setForwardLink(x: &t, y: &f0)
     return Triple(m0: h, m1: t, m2: l0)
 }
@@ -288,7 +288,7 @@ func combineLinkedNonempty<I: ForwardLinkedIterator>(
     f0: I, l0: I,
     f1: I, l1: I,
     r: Relation<I>
-) -> Triple<I, I, I>? {
+    ) -> Triple<I, I, I>? {
     var f0 = f0, f1 = f1
     var l0 = l0, l1 = l1
     // Precondition: bounded_range(f0, l0) ∧ bounded_range(f1, l1)
@@ -333,7 +333,7 @@ func reverseAppend<I: ForwardLinkedIterator>(f: I, l: I, h: I) -> I? {
 
 public func predicateSource<I: Readable>(
     p: @escaping UnaryPredicate<I.Source>
-) -> UnaryPredicate<I> {
+    ) -> UnaryPredicate<I> {
     return { i in
         return p(i.source!)
     }
@@ -342,7 +342,7 @@ public func predicateSource<I: Readable>(
 func partitionLinked<I: Readable & ForwardLinkedIterator>(
     f: I, l: I,
     p: @escaping UnaryPredicate<I.Source>
-) -> Pair<Pair<I, I>, Pair<I, I>>? {
+    ) -> Pair<Pair<I, I>, Pair<I, I>>? {
     // Precondition: bounded_range(f, l)
     let ps: UnaryPredicate<I> = predicateSource(p: p)
     return splitLinked(f: f, l: l, p: ps)
@@ -351,20 +351,20 @@ func partitionLinked<I: Readable & ForwardLinkedIterator>(
 public func relationSource<
     I0: Readable,
     I1: Readable
->(
+    >(
     r: @escaping Relation<I0.Source>
-) -> BinaryRelation<I0, I1>
-where I0.Source == I1.Source {
-    return { i0, i1 in
-        return r(i0.source!, i1.source!)
-    }
+    ) -> BinaryRelation<I0, I1>
+    where I0.Source == I1.Source {
+        return { i0, i1 in
+            return r(i0.source!, i1.source!)
+        }
 }
 
 func mergeLinkedNonempty<I: Readable & ForwardLinkedIterator>(
     f0: I, l0: I,
     f1: I, l1: I,
     r: @escaping Relation<I.Source>
-) -> Pair<I, I>? {
+    ) -> Pair<I, I>? {
     var l1 = l1
     // Precondition: f0 ≠ l0 ∧ f1 ≠ l1
     // Precondition: increasing_range(f0, l0, r)
@@ -373,7 +373,7 @@ func mergeLinkedNonempty<I: Readable & ForwardLinkedIterator>(
     guard let t = combineLinkedNonempty(f0: f0, l0: l0,
                                         f1: f1, l1: l1,
                                         r: rs),
-          var last = findLast(f: t.m1, l: t.m2) else { return nil }
+        var last = findLast(f: t.m1, l: t.m2) else { return nil }
     ForwardLinker.setForwardLink(x: &last, y: &l1)
     return Pair(m0: t.m0, m1: l1)
 }
@@ -382,7 +382,7 @@ func sortLinkedNonempty<I: Readable & ForwardLinkedIterator>(
     f: I,
     n: DistanceType,
     r: @escaping Relation<I.Source>
-) -> Pair<I, I>? {
+    ) -> Pair<I, I>? {
     // Precondition: counted_range(f, n) ∧
     //                n > 0 ∧ weak_ordering(r)
     guard n != 1 else {
@@ -391,8 +391,8 @@ func sortLinkedNonempty<I: Readable & ForwardLinkedIterator>(
     }
     let h = n.halfNonnegative()
     guard let p0 = sortLinkedNonempty(f: f, n: h, r: r),
-          let p1 = sortLinkedNonempty(f: p0.m1, n: n - h, r: r) else {
-        return nil
+        let p1 = sortLinkedNonempty(f: p0.m1, n: n - h, r: r) else {
+            return nil
     }
     return mergeLinkedNonempty(f0: p0.m0, l0: p0.m1, f1: p1.m0, l1: p1.m1, r: r)
 }
@@ -407,7 +407,7 @@ func sortLinkedNonempty<I: Readable & ForwardLinkedIterator>(
 func treeRotate<C: EmptyLinkedBifurcateCoordinate>(
     curr: inout C,
     prev: inout C
-) throws {
+    ) throws {
     // Precondition: ￢empty(curr)
     guard let tmp = curr.leftSuccessor else { throw EOPError.noLeftSuccessor }
     guard let crs = curr.rightSuccessor else { throw EOPError.noRightSuccessor }
@@ -424,25 +424,25 @@ func treeRotate<C: EmptyLinkedBifurcateCoordinate>(
 func traverseRotating<
     C: EmptyLinkedBifurcateCoordinate,
     P: UnaryProcedure
->(
+    >(
     c: C,
     proc: P
-) -> P?
-where P.UnaryProcedureType == C {
-    // Precondition: tree(c)
-    guard !c.isEmpty else { return proc }
-    var curr = c, prev = c
-    repeat {
+    ) -> P?
+    where P.UnaryProcedureType == C {
+        // Precondition: tree(c)
+        guard !c.isEmpty else { return proc }
+        var curr = c, prev = c
+        repeat {
+            proc.call(curr)
+            do { try treeRotate(curr: &curr, prev: &prev) } catch { return nil }
+        } while curr != c
+        repeat {
+            proc.call(curr)
+            do { try treeRotate(curr: &curr, prev: &prev) } catch { return nil }
+        } while curr != c
         proc.call(curr)
         do { try treeRotate(curr: &curr, prev: &prev) } catch { return nil }
-    } while curr != c
-    repeat {
-        proc.call(curr)
-        do { try treeRotate(curr: &curr, prev: &prev) } catch { return nil }
-    } while curr != c
-    proc.call(curr)
-    do { try treeRotate(curr: &curr, prev: &prev) } catch { return nil }
-    return proc
+        return proc
 }
 
 
@@ -452,11 +452,11 @@ where P.UnaryProcedureType == C {
 
 class Counter<T>: UnaryProcedure {
     var n: N
-    
+
     init() {
         n = 0
     }
-    
+
     init(n: N) {
         self.n = n
     }
@@ -468,7 +468,7 @@ class Counter<T>: UnaryProcedure {
 
 func weightRotating<C: EmptyLinkedBifurcateCoordinate>(
     c: C
-) -> WeightType? {
+    ) -> WeightType? {
     // Precondition: tree(c)
     let counter = Counter<C>()
     guard let tr = traverseRotating(c: c, proc: counter) else { return nil }
@@ -481,14 +481,14 @@ class PhasedApplicator<P: UnaryProcedure>: UnaryProcedure {
     var phase: N
     var n: N
     var proc: P
-    
+
     init(period: N, phase: N, n: N, proc: P) {
         self.period = period
         self.phase = phase
         self.n = n
         self.proc = proc
     }
-    
+
     func call(_ arg: P.UnaryProcedureType) {
         if n == phase { proc.call(arg) }
         n = n.successor()
@@ -499,15 +499,15 @@ class PhasedApplicator<P: UnaryProcedure>: UnaryProcedure {
 func traversePhasedRotating<
     C: EmptyLinkedBifurcateCoordinate,
     P: UnaryProcedure
->(
+    >(
     c: C,
     phase: N, proc: P
-) -> P?
-where P.UnaryProcedureType == C {
-    // Precondition: tree(c) ∧ 0 ≤ phase < 3
-    let applicator = PhasedApplicator(period: 3,
-                                      phase: phase,
-                                      n: 0,
-                                      proc: proc)
-    return traverseRotating(c: c, proc: applicator)?.proc
+    ) -> P?
+    where P.UnaryProcedureType == C {
+        // Precondition: tree(c) ∧ 0 ≤ phase < 3
+        let applicator = PhasedApplicator(period: 3,
+                                          phase: phase,
+                                          n: 0,
+                                          proc: proc)
+        return traverseRotating(c: c, proc: applicator)?.proc
 }

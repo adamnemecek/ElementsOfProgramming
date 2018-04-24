@@ -257,12 +257,12 @@ public protocol Mutable: Readable, Writable where Source == Sink {
 // Chapter 11
 
 public protocol Linearizable: Regular {
-    associatedtype LinearizableIteratorType: Regular
-    associatedtype LinearizableValueType: Regular
-    
-    var begin: LinearizableIteratorType { get }
-    var end: LinearizableIteratorType { get }
+    associatedtype Iterator: Regular
+    associatedtype Value: Regular
+
+    var begin: Iterator { get }
+    var end: Iterator { get }
     var size: Int { get }
     var isEmpty: Bool { get }
-    subscript(index: Int) -> LinearizableValueType { get set }
+    subscript(index: Int) -> Value { get set }
 }
